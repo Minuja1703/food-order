@@ -52,33 +52,18 @@ function App() {
         </div>
       </nav>
 
-      {/* <div
+      <div
         className="relative w-full p-45 bg-cover"
         style={{ backgroundImage: `url(${coverImg})` }}
       >
         <div className="absolute inset-0 mask-t-from-50% mask-r-from-30% bg-white/0 pointer-events-none"></div>
 
         <div className="relative">
-          <h3 className=" text-center text-6xl text-[oklch(58.8%_0.158_241.966)] text-bold">
+          <h3 className="text-center text-6xl text-[oklch(58.8%_0.158_241.966)] text-bold">
             “Explore Global Cuisine,Effortlessly.”
           </h3>
         </div>
-      </div> */}
-
-<div className="relative w-full p-45 bg-cover" style={{ backgroundImage: `url(${coverImg})` }}>
-  
-  {/* Mask overlay (affects only this layer, not the text) */}
-  <div className="absolute inset-0 mask-t-from-50% mask-r-from-50% bg-white/70 pointer-events-none"></div>
-
-  {/* Your Text – stays unaffected */}
-  <div className="relative">
-    <h3 className="text-center text-6xl text-[oklch(58.8%_0.158_241.966)] font-bold">
-      “Explore Global Cuisine, Effortlessly.”
-    </h3>
-  </div>
-
-</div>
-
+      </div>
 
       <div className="bg-[oklch(96.7%_0.067_122.328)]">
         <h2 className="text-2xl font-bold p-3 ml-8">Categories</h2>
