@@ -1,4 +1,6 @@
 import React from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
 import CategoryCard from "./components/CategoryCard";
 import FeaturedCard from "./components/FeaturedCard";
 import indianCuisine from "./assets/images/indianCuisine.jpeg";
@@ -13,16 +15,15 @@ import croissants from "./assets/images/croissants.jpeg";
 import dumplings from "./assets/images/dumplings.jpeg";
 import pizza from "./assets/images/pizza.jpeg";
 import donuts from "./assets/images/donuts.jpeg";
-import coverImg from "./assets/images/coverImg.jpeg";
 
 function App() {
   const cuisines = [
-    { cuisineImg: indianCuisine, cuisineName: "Indian" },
-    { cuisineImg: koreanCuisine, cuisineName: "Korean" },
-    { cuisineImg: chineseCuisine, cuisineName: "Chinese" },
-    { cuisineImg: italianCuisine, cuisineName: "Italian" },
-    { cuisineImg: americanCuisine, cuisineName: "American" },
-    { cuisineImg: spanishCuisine, cuisineName: "Spanish" },
+    { cuisineImg: indianCuisine, cuisineName: "Indian Cuisine" },
+    { cuisineImg: koreanCuisine, cuisineName: "Korean Cuisine" },
+    { cuisineImg: chineseCuisine, cuisineName: "Chinese Cuisine" },
+    { cuisineImg: italianCuisine, cuisineName: "Italian Cuisine" },
+    { cuisineImg: americanCuisine, cuisineName: "American Cuisine" },
+    { cuisineImg: spanishCuisine, cuisineName: "Spanish Cuisine" },
   ];
 
   const featured = [
@@ -36,38 +37,15 @@ function App() {
 
   return (
     <>
-      <nav className="flex gap-6 p-5 items-center place-content-between flex-wrap">
-        <div>
-          <h1 className="font-bold text-[oklch(58.8%_0.158_241.966)] text-4xl">
-            WorldPlatter
-          </h1>
-        </div>
+      <Navbar />
 
-        <div>
-          <ul className="flex gap-6">
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-          </ul>
-        </div>
-      </nav>
+      <Hero />
 
-      <div
-        className="relative w-full p-45 bg-cover"
-        style={{ backgroundImage: `url(${coverImg})` }}
-      >
-        <div className="absolute inset-0 mask-t-from-50% mask-r-from-30% bg-white/0 pointer-events-none"></div>
+      <div className="bg-[oklch(96.7%_0.067_122.328)] py-6">
+        <h2 className="text-xl sm:text-2xl font-bold px-5">Categories</h2>
 
-        <div className="relative">
-          <h3 className="text-center text-6xl text-[oklch(58.8%_0.158_241.966)] text-bold">
-            “Explore Global Cuisine,Effortlessly.”
-          </h3>
-        </div>
-      </div>
-
-      <div className="bg-[oklch(96.7%_0.067_122.328)]">
-        <h2 className="text-2xl font-bold p-3 ml-8">Categories</h2>
-        <div className="flex gap-6 flex-wrap items-center justify-center cursor-pointer">
+       
+        <div className="flex gap-6 flex-wrap items-center justify-center cursor-pointer mt-4">
           {cuisines.map((cuisine, index) => (
             <CategoryCard
               key={index}
@@ -78,9 +56,9 @@ function App() {
         </div>
       </div>
 
-      <div className="bg-[oklch(96.7%_0.067_122.328)]">
-        <h2 className="text-2xl font-bold p-3 ml-8">Featured</h2>
-        <div className="flex gap-6 flex-wrap items-center justify-center cursor-pointer p-3">
+      <div className="bg-[oklch(96.7%_0.067_122.328)] py-6">
+        <h2 className="text-2xl font-bold px-5">Featured</h2>
+        <div className="flex gap-6 flex-wrap items-center justify-center cursor-pointer mt-4">
           {featured.map((feature, index) => (
             <FeaturedCard
               key={index}
