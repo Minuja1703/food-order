@@ -12,6 +12,7 @@ function FeaturedCard(props) {
         alt="Featured Food Image"
         className="w-full h-40 sm:h-48 md:h-56 object-cover rounded-xl"
       />
+      <div className="text-center">
       <h4 className="text-lg md:text-xl mt-3">
         {props.featuredFood.featuredName}
       </h4>
@@ -23,6 +24,7 @@ function FeaturedCard(props) {
       >
         Add to Cart
       </button>
+      </div>
     </div>
   );
 }

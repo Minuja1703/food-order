@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function SigUp() {
   const [inputs, setInputs] = useState({
@@ -30,8 +31,8 @@ function SigUp() {
     /(?=^.{8,16}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
 
   return (
-    <div className="bg-[oklch(97%_0.014_254.604)] h-screen flex items-center justify-center">
-      <div className="w-[450px] bg-white p-4 rounded-lg">
+    <div className="bg-[oklch(97%_0.014_254.604)] min-h-screen flex items-start justify-center pt-18">
+      <div className="w-[80%] md:w-[40%] lg:w-[30%] bg-white p-4 rounded-lg">
         <h1 className="text-4xl font-bold text-center p-2 text-[oklch(45%_0.085_224.283)]">
           Sign Up
         </h1>
@@ -148,6 +149,10 @@ function SigUp() {
             >
               Sign Up
             </button>
+            <div className="text-sm text-center p-2 text-[oklch(45%_0.085_224.283)]">
+              Already have an account?
+              <Link to="/login"> Login</Link>
+            </div>
           </div>
         </form>
       </div>
