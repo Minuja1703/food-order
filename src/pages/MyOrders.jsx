@@ -6,7 +6,7 @@ function MyOrders() {
   const itemsOrdered = useSelector((state) => state.orders.value);
 
   return (
-    <div className="bg-[oklch(98.4%_0.019_200.873)] dark:bg-black">
+    <div className="bg-[oklch(98.4%_0.019_200.873)] dark:bg-black min-h-screen">
       <div className="flex flex-col gap-3 p-5 rounded-xl">
         <h2 className="text-2xl dark:text-[oklch(74.6%_0.16_232.661)] p-3">
           My Orders
