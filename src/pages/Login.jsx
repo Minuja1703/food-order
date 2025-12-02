@@ -8,14 +8,17 @@ function Login() {
 
   return (
     <div
-      className="bg-[oklch(97%_0.014_254.604)]
+      className="bg-[oklch(97%_0.014_254.604)] dark:bg-black
        min-h-screen flex items-start justify-center pt-20"
     >
-      <div className="bg-white p-4 rounded-lg w-[80%] lg:w-[30%]">
-        <h1 className="text-3xl lg:text-4xl font-bold text-center p-3 text-[oklch(45%_0.085_224.283)]">
+      <div className="bg-white dark:bg-[oklch(26.9%_0_0)] p-4 rounded-lg w-[80%] lg:w-[30%]">
+        <h1 className="text-3xl lg:text-4xl font-bold text-center p-3 text-[oklch(45%_0.085_224.283)] dark:text-[oklch(74.6%_0.16_232.661)]">
           Login
         </h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3 p-2">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-3 p-2 dark:text-[oklch(74.6%_0.16_232.661)]"
+        >
           <div className="flex flex-col p-1">
             <label htmlFor="username" className="font-semibold">
               Username
@@ -52,7 +55,7 @@ function Login() {
               Login
             </button>
 
-            <div className="text-sm text-center p-2 text-[oklch(45%_0.085_224.283)]">
+            <div className="text-sm text-center p-2 text-[oklch(45%_0.085_224.283)] dark:text-[oklch(74.6%_0.16_232.661)]">
               New to WorldPlatter?
               <Link to="/signup"> SignUp</Link>
             </div>

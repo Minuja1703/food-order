@@ -17,7 +17,6 @@ export const cartSlice = createSlice({
       } else {
         state.value.push({ ...clickedItem, quantity: 1 });
       }
-      //   console.log(state.value);
     },
 
     clearCart: (state) => {

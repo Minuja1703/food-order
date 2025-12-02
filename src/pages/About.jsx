@@ -2,7 +2,7 @@ import React from "react";
 
 function About() {
   return (
-    <div className="p-5 bg-[oklch(98.7%_0.026_102.212)] min-h-screen">
+    <div className="p-5 bg-[oklch(98.7%_0.026_102.212)] dark:bg-black dark:text-[oklch(74.6%_0.16_232.661)] min-h-screen">
       <h2 className="text-lg md:text-3xl mb-3">About Us</h2>
       <p>
         Welcome to WorldPlatter, your trusted partner for fast, easy, and

@@ -2,7 +2,7 @@ import React from "react";
 
 function Contact() {
   return (
-    <div className="p-4 bg-[oklch(98.6%_0.031_120.757)] min-h-screen">
+    <div className="p-4 bg-[oklch(98.6%_0.031_120.757)] dark:bg-black dark:text-[oklch(74.6%_0.16_232.661)] min-h-screen">
       <h1 className="text-3xl">Contact Us</h1>
       <p className="p-2">
         We're always here to help! Whether you have questions, feedback, or need
