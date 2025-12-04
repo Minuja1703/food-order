@@ -55,7 +55,7 @@ function AdminDashboard() {
               Total Users
             </h3>
             <p className="mt-3 text-4xl font-bold text-gray-700">
-              {users.length}
+              {users?.length || 0}
             </p>
           </div>
 
@@ -64,7 +64,7 @@ function AdminDashboard() {
               Total Products
             </h2>
             <p className="mt-3 text-4xl font-bold text-gray-700">
-              {foodItems.length}
+              {foodItems?.length || 0}
             </p>
           </div>
 
@@ -73,7 +73,7 @@ function AdminDashboard() {
               Total Orders
             </h2>
             <p className="mt-3 text-4xl font-bold text-gray-700">
-              {myOrdersData.length}
+              {myOrdersData?.length || 0}
             </p>
           </div>
         </div>
