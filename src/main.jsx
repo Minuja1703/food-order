@@ -16,6 +16,13 @@ import CheckOut from "./pages/CheckOut.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import OrderSuccess from "./pages/OrderSuccess.jsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import { Toaster } from "react-hot-toast";
+import AdminRoot from "./routes/AdminRoot.jsx";
+import ManageOrders from "./pages/admin/ManageOrders.jsx";
+import ManageProducts from "./pages/admin/ManageProducts.jsx";
+import ManageUsers from "./pages/admin/ManageUsers.jsx";
+// import ViewProducts from "./pages/admin/ViewProducts.jsx";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +58,7 @@ const router = createBrowserRouter([
         element: <CheckOut />,
       },
       {
-        path: "login",
+        path: "/login",
         element: <Login />,
       },
       {
@@ -68,10 +75,33 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/admin",
+    element: <AdminRoot />,
+    children: [
+      {
+        index: true,
+        element: <AdminDashboard />,
+      },
+      {
+        path: "manageorders",
+        element: <ManageOrders />,
+      },
+      {
+        path: "manageproducts",
+        element: <ManageProducts />,
+      },
+      {
+        path: "manageusers",
+        element: <ManageUsers />,
+      },
+    ],
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <Toaster />
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>

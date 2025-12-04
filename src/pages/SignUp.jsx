@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SigUp() {
+  const navigate = useNavigate();
+
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -24,6 +28,34 @@ function SigUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const usernameExists = users.find(
+      (item) => item.username === inputs.username
+    );
+    const emailExists = users.find((items) => items.email === inputs.email);
+
+    if (usernameExists) {
+      toast.error("Username already Exists. Try a different one.");
+      return;
+    }
+
+    if (emailExists) {
+      toast.error("Email already registred.");
+      return;
+    }
+
+    const newUser = {
+      id: Date.now(),
+      username: inputs.username,
+      email: inputs.email,
+      password: inputs.password,
+    };
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+    toast.success("Sign Up successful.");
+    navigate("/login");
   };
 
   const usernameRegex = /^[A-Za-z0-9]{3,16}$/;
@@ -36,7 +68,10 @@ function SigUp() {
         <h1 className="text-4xl dark:text-[oklch(74.6%_0.16_232.661)] font-bold text-center p-2 text-[oklch(45%_0.085_224.283)]">
           Sign Up
         </h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 dark:text-[oklch(74.6%_0.16_232.661)]">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 dark:text-[oklch(74.6%_0.16_232.661)]"
+        >
           <div className="flex flex-col">
             <label htmlFor="username" className="font-semibold">
               Username

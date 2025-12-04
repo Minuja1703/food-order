@@ -69,7 +69,7 @@ function Navbar() {
             </div>
           </Link>
 
-          <Link to="login">
+          <Link to="/login">
             <i className="bi bi-person text-3xl"></i>
           </Link>
         </div>

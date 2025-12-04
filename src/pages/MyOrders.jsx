@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 function MyOrders() {
   const itemsOrdered = useSelector((state) => state.orders.value);
+  // JSON.parse(localStorage.getItem("myOrdersData"));
 
   return (
     <div className="bg-[oklch(98.4%_0.019_200.873)] dark:bg-black min-h-screen">
@@ -13,7 +14,10 @@ function MyOrders() {
         </h2>
 
         {itemsOrdered.map((order) => (
-          <div key={order.id} className="p-3 bg-white dark:bg-[oklch(26.9%_0_0)] dark:text-[oklch(74.6%_0.16_232.661)] rounded-xl">
+          <div
+            key={order.id}
+            className="p-3 bg-white dark:bg-[oklch(26.9%_0_0)] dark:text-[oklch(74.6%_0.16_232.661)] rounded-xl"
+          >
             <p>Order Date: {new Date(order.date).toLocaleString()}</p>
 
             {order.items.map((item) => (

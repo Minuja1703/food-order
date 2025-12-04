@@ -1,9 +1,51 @@
 import React from "react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+
+  const [inputs, setInputs] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setInputs({ ...inputs, [name]: value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const admin = JSON.parse(localStorage.getItem("adminData"));
+    const userData = JSON.parse(localStorage.getItem("users"));
+
+    if (admin.email === inputs.username && admin.password === inputs.password) {
+      localStorage.setItem("isAdmin", true);
+      navigate("/admin");
+      toast("Welcome Admin", {
+        icon: "👏",
+      });
+    } else if (
+      userData !== null &&
+      userData.find(
+        (item) =>
+          item.username === inputs.username && item.password === inputs.password
+      )
+    ) {
+      navigate("/");
+
+      toast(`Welcome ${inputs.username}`, {
+        icon: "👏",
+      });
+    } else {
+      toast.error("Incorrect Login Credentials.");
+    }
   };
 
   return (
@@ -29,6 +71,8 @@ function Login() {
               className="border rounded p-2 text-md"
               placeholder="Username"
               required
+              name="username"
+              onChange={handleChange}
             />
             <span className="text-[oklch(63.7%_0.237_25.331)] text-sm"></span>
           </div>
@@ -43,6 +87,8 @@ function Login() {
               className="border rounded p-2 text-md"
               placeholder="Password"
               required
+              name="password"
+              onChange={handleChange}
             />
             <span className="text-[oklch(63.7%_0.237_25.331)] text-sm"></span>
           </div>

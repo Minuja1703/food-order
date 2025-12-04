@@ -4,6 +4,7 @@ import croissants from "../assets/images/croissants.jpeg";
 import dumplings from "../assets/images/dumplings.jpeg";
 import pizza from "../assets/images/pizza.jpeg";
 import donuts from "../assets/images/donuts.jpeg";
+import chowmein from "../assets/images/chowmein.jpeg";
 
 export const featured = [
   {
@@ -58,6 +59,15 @@ export const featured = [
     featuredRestrnt: "Meen By Chef Pillai",
     featuredPrice: 60,
     category: "American",
+    isFeatured: false,
+  },
+  {
+    featuredId: 7,
+    featuredImg: chowmein,
+    featuredName: "Chow Mein",
+    featuredRestrnt: "Haidilao Hot Pot",
+    featuredPrice: 180,
+    category: "Chinese",
     isFeatured: false,
   },
 ];

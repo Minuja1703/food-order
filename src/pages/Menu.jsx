@@ -1,4 +1,3 @@
-import { featured } from "../data/foodItems";
 import FeaturedCard from "../components/FeaturedCard";
 import React, { useState } from "react";
 
@@ -19,10 +18,14 @@ function Menu() {
     setCategory(e.target.value);
   };
 
+  const foodItems = JSON.parse(localStorage.getItem("foodItems"));
+
   return (
     <div className="bg-[oklch(96.7%_0.067_122.328)] dark:bg-black py-6">
       <div className="flex flex-col md:flex-row justify-between p-3">
-        <h2 className="text-lg md:text-3xl font-bold px-5 dark:text-[oklch(74.6%_0.16_232.661)]">Menu</h2>
+        <h2 className="text-lg md:text-3xl font-bold px-5 dark:text-[oklch(74.6%_0.16_232.661)]">
+          Menu
+        </h2>
         <div className="flex flex-col md:flex-row gap-4">
           <input
             type="text"
@@ -57,7 +60,7 @@ function Menu() {
       </div>
 
       <div className="flex gap-6 flex-wrap items-center justify-center mt-4 dark:text-[oklch(74.6%_0.16_232.661)]">
-        {featured
+        {foodItems
           .filter((item) =>
             category === ""
               ? true
