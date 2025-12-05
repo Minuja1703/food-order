@@ -73,6 +73,7 @@ function Login() {
               required
               name="username"
               onChange={handleChange}
+              value={inputs.username}
             />
             <span className="text-[oklch(63.7%_0.237_25.331)] text-sm"></span>
           </div>
@@ -89,6 +90,7 @@ function Login() {
               required
               name="password"
               onChange={handleChange}
+              value={inputs.password}
             />
             <span className="text-[oklch(63.7%_0.237_25.331)] text-sm"></span>
           </div>
