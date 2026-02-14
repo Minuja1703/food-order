@@ -22,7 +22,7 @@ import AdminRoot from "./routes/AdminRoot.jsx";
 import ManageOrders from "./pages/admin/ManageOrders.jsx";
 import ManageProducts from "./pages/admin/ManageProducts.jsx";
 import ManageUsers from "./pages/admin/ManageUsers.jsx";
-// import ViewProducts from "./pages/admin/ViewProducts.jsx";
+import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "myorders",
-        element: <MyOrders />,
+        element: (
+          <ProtectedRoute role="User">
+            <MyOrders />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "about",
@@ -51,11 +55,19 @@ const router = createBrowserRouter([
       },
       {
         path: "cart",
-        element: <Cart />,
+        element: (
+          <ProtectedRoute role="User">
+            <Cart />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/checkout",
-        element: <CheckOut />,
+        element: (
+          <ProtectedRoute role="User">
+            <CheckOut />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/login",
@@ -67,7 +79,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/ordersuccess",
-        element: <OrderSuccess />,
+        element: (
+          <ProtectedRoute role="User">
+            <OrderSuccess />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/myorders",
@@ -77,7 +93,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminRoot />,
+    element: (
+      <ProtectedRoute role="Admin">
+        <AdminRoot />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,

@@ -50,6 +50,7 @@ function SigUp() {
       username: inputs.username,
       email: inputs.email,
       password: inputs.password,
+      role: "User",
     };
 
     users.push(newUser);

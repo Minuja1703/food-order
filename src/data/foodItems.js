@@ -15,6 +15,7 @@ export const featured = [
     featuredPrice: 160,
     category: "Indian",
     isFeatured: true,
+    stock : 100
   },
   {
     featuredId: 2,
@@ -24,6 +25,7 @@ export const featured = [
     featuredPrice: 350,
     category: "Italian",
     isFeatured: true,
+    stock : 90
   },
   {
     featuredId: 3,
@@ -33,6 +35,7 @@ export const featured = [
     featuredPrice: 150,
     category: "French",
     isFeatured: true,
+    stock : 5
   },
   {
     featuredId: 4,
@@ -42,6 +45,7 @@ export const featured = [
     featuredPrice: 80,
     category: "Chinese",
     isFeatured: true,
+    stock : 10
   },
   {
     featuredId: 5,
@@ -51,6 +55,7 @@ export const featured = [
     featuredPrice: 240,
     category: "Italian",
     isFeatured: true,
+    stock : 25
   },
   {
     featuredId: 6,
@@ -60,6 +65,7 @@ export const featured = [
     featuredPrice: 60,
     category: "American",
     isFeatured: false,
+    stock : 50
   },
   {
     featuredId: 7,
@@ -69,5 +75,6 @@ export const featured = [
     featuredPrice: 180,
     category: "Chinese",
     isFeatured: false,
+    stock : 30
   },
 ];

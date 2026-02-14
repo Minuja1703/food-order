@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 function MyOrders() {
   const itemsOrdered = useSelector((state) => state.orders.value);
-  // JSON.parse(localStorage.getItem("myOrdersData"));
 
   return (
     <div className="bg-[oklch(98.4%_0.019_200.873)] dark:bg-black min-h-screen">

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../features/auth/authSlice";
 
 function Navbar() {
   const cartCount = useSelector((state) => state.cart.value);
 
   const [open, setOPen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.value);
 
   const handletoggleMode = () => {
     setIsDark((isDark) => {
@@ -60,18 +63,29 @@ function Navbar() {
             )}
           </button>
 
-          <Link to="cart">
-            <div className="relative">
-              <i className="bi bi-cart3 text-2xl "></i>
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                {cartCount.length}
-              </span>
-            </div>
-          </Link>
+          {user?.role === "User" && (
+            <Link to="cart">
+              <div className="relative">
+                <i className="bi bi-cart3 text-2xl "></i>
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                  {cartCount.length}
+                </span>
+              </div>
+            </Link>
+          )}
 
-          <Link to="/login">
-            <i className="bi bi-person text-3xl"></i>
-          </Link>
+          {user?.role === "User" ? (
+            <button
+              className="border rounded-lg p-2 bg-red-600 text-white"
+              onClick={() => dispatch(logout())}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to="/login">
+              <i className="bi bi-person text-3xl"></i>
+            </Link>
+          )}
         </div>
 
         <button

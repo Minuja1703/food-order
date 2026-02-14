@@ -3,6 +3,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useDispatch} from "react-redux";
+import { login } from "../features/auth/authSlice";
 
 function Login() {
   const navigate = useNavigate();
@@ -11,6 +13,8 @@ function Login() {
     username: "",
     password: "",
   });
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -23,24 +27,32 @@ function Login() {
     e.preventDefault();
 
     const admin = JSON.parse(localStorage.getItem("adminData"));
-    const userData = JSON.parse(localStorage.getItem("users"));
+    const userData = JSON.parse(localStorage.getItem("users")) || [];
 
     if (admin.email === inputs.username && admin.password === inputs.password) {
-      localStorage.setItem("isAdmin", true);
+      dispatch(login({ email: admin.email, role: admin.role }));
+
       navigate("/admin");
+
       toast("Welcome Admin", {
         icon: "👏",
       });
-    } else if (
+
+      return;
+    }
+    const userFound =
       userData !== null &&
       userData.find(
         (item) =>
           item.username === inputs.username && item.password === inputs.password
-      )
-    ) {
+      );
+
+    if (userFound) {
+      dispatch(login({ username: userFound.username, role: userFound.role }));
+
       navigate("/");
 
-      toast(`Welcome ${inputs.username}`, {
+      toast(`Welcome ${userFound.username}`, {
         icon: "👏",
       });
     } else {

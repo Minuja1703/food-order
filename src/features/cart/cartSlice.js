@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -26,7 +27,16 @@ export const cartSlice = createSlice({
     incrementQty: (state, action) => {
       const clickedItemId = action.payload;
       const item = state.value.find((x) => x.featuredId === clickedItemId);
-      if (item) item.quantity += 1;
+
+      if (item) {
+        if (item.stock > item.quantity) {
+          item.quantity += 1;
+        } else {
+          toast.error(
+            `Cannot add more quantity. Maximum available quantity is ${item.stock}.`
+          );
+        }
+      }
     },
 
     decrementQty: (state, action) => {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 function ManageProducts() {
   const foodItems = JSON.parse(localStorage.getItem("foodItems"));
@@ -9,10 +10,23 @@ function ManageProducts() {
     price: "",
     category: "",
     isFeatured: "",
+    stock: "",
     image: "",
   });
 
+  const [food, setFood] = useState("");
+
   const [open, setOpen] = useState(false);
+
+  const [editingItem, setEditingItem] = useState({
+    featuredName: "",
+    featuredRestrnt: "",
+    featuredPrice: "",
+    category: "",
+    isFeatured: "",
+    stock: "",
+    featuredImg: "",
+  });
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -23,17 +37,9 @@ function ManageProducts() {
   const handleDelete = (id) => {
     const finalFood = foodItems.filter((item) => item.featuredId !== id);
     localStorage.setItem("foodItems", JSON.stringify(finalFood));
-    window.location.reload();
+    toast.success("Food Deleted Successfully.");
+    setFood(finalFood);
   };
-
-  const [editingItem, setEditingItem] = useState({
-    featuredName: "",
-    featuredRestrnt: "",
-    featuredPrice: "",
-    category: "",
-    isFeatured: "",
-    featuredImg: "",
-  });
 
   const handleEdit = (food) => {
     setEditingItem(food);
@@ -50,20 +56,18 @@ function ManageProducts() {
     } else {
       updatedValue = value;
     }
-
     setEditingItem({ ...editingItem, [name]: updatedValue });
   };
 
   const handleUpdate = (e) => {
     e.preventDefault();
-
     const updatedFood = foodItems.map((item) =>
       item.featuredId === editingItem.featuredId ? editingItem : item
     );
-
     localStorage.setItem("foodItems", JSON.stringify(updatedFood));
-
-    window.location.reload();
+    setFood(updatedFood);
+    toast.success("Food Updated Succesfully.");
+    setOpen(false);
   };
 
   const handleSubmit = (e) => {
@@ -76,23 +80,26 @@ function ManageProducts() {
       featuredRestrnt: inputs.restaurantName,
       featuredPrice: inputs.price,
       category: inputs.category,
+      stock: inputs.stock,
       isFeatured: inputs.isFeatured === "yes" ? true : false,
     };
 
     foodItems.push(newProduct);
     localStorage.setItem("foodItems", JSON.stringify(foodItems));
-
-    window.location.reload();
+    setFood(foodItems);
+    toast.success("Food Added Successfully.");
   };
 
   return (
     <>
       <div className="pt-8 relative bg-[oklch(98.4%_0.019_200.873)] min-h-screen">
-        <h2 className="text-center text-4xl font-bold">Manage Products</h2>
+        <h2 className="text-center text-2xl md:text-4xl font-bold">
+          Manage Products
+        </h2>
 
         <div className="flex flex-col items-center justify-center mt-4">
-          <div className="bg-white flex flex-col p-5 gap-3 w-[500px]">
-            <h2 className="text-2xl font-semibold">Add Product</h2>
+          <div className="bg-white flex flex-col p-5 gap-3 w-[90%] md:w-[500px]">
+            <h2 className="text-xl md:text-2xl font-semibold">Add Product</h2>
             <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
               <input
                 type="text"
@@ -119,6 +126,15 @@ function ManageProducts() {
                 onChange={handleInput}
                 required
                 name="price"
+              />
+
+              <input
+                type="text"
+                placeholder="Quantity"
+                className="border p-2"
+                onChange={handleInput}
+                required
+                name="stock"
               />
 
               <select
@@ -191,53 +207,62 @@ function ManageProducts() {
             </form>
           </div>
 
-          <table className="w-[900px] bg-white my-6 rounded-xl overflow-hidden">
-            <thead className="bg-[oklch(80.9%_0.105_251.813)] border">
-              <tr className="border">
-                <th className="border p-2">Image</th>
-                <th className="border p-2">Name</th>
-                <th className="border p-2">Restaurant Name</th>
-                <th className="border p-2">Price</th>
-                <th className="border p-2">Category</th>
-                <th className="border p-2">Is Featured?</th>
-                <th className="p-2 border"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {foodItems.map((foodItem) => (
-                <tr key={foodItem.featuredId} className="border">
-                  <td className="border p-2">
-                    <img
-                      src={foodItem.featuredImg || null}
-                      alt=""
-                      className="w-12 h-12 object-cover rounded-lg"
-                    />
-                  </td>
-                  <td className="border p-2">{foodItem.featuredName}</td>
-                  <td className="border p-2">{foodItem.featuredRestrnt}</td>
-                  <td className="border p-2">₹{foodItem.featuredPrice}</td>
-                  <td className="border p-2">{foodItem.category}</td>
-                  <td className="border p-2">
-                    {foodItem.isFeatured ? "Yes" : "No"}
-                  </td>
-                  <td className="flex gap-4 p-2">
-                    <button
-                      className="text-sm text-white px-3 py-1 rounded-md bg-[oklch(76.9%_0.188_70.08)] cursor-pointer"
-                      onClick={() => handleEdit(foodItem)}
+          <div className="w-full flex justify-center mt-6 p-5">
+            <div className="overflow-x-auto">
+              <table className="w-72 md:w-[900px] bg-white my-6 rounded-xl overflow-hidden shadow-xl">
+                <thead className="bg-[oklch(80.9%_0.105_251.813)] ">
+                  <tr className="text-center">
+                    <th className="p-2">Image</th>
+                    <th className="p-2">Name</th>
+                    <th className="p-2">Restaurant Name</th>
+                    <th className="p-2">Price</th>
+                    <th className="p-2">Quantity</th>
+                    <th className="p-2">Category</th>
+                    <th className="p-2">Featured?</th>
+                    <th className="p-2 "></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {foodItems.map((foodItem) => (
+                    <tr
+                      key={foodItem.featuredId}
+                      className="border-b text-center"
                     >
-                      Edit
-                    </button>
-                    <button
-                      className="text-sm text-white px-3 py-1 rounded-md bg-[oklch(63.7%_0.237_25.331)] cursor-pointer"
-                      onClick={() => handleDelete(foodItem.featuredId)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                      <td className="p-2">
+                        <img
+                          src={foodItem.featuredImg || null}
+                          alt="Food Image"
+                          className="w-12 h-12 object-cover rounded-lg"
+                        />
+                      </td>
+                      <td className="p-2">{foodItem.featuredName}</td>
+                      <td className="p-2">{foodItem.featuredRestrnt}</td>
+                      <td className="p-2">₹{foodItem.featuredPrice}</td>
+                      <td className="p-2">{foodItem.stock}</td>
+                      <td className="p-2">{foodItem.category}</td>
+                      <td className="p-2">
+                        {foodItem.isFeatured ? "Yes" : "No"}
+                      </td>
+                      <td className="flex gap-4 p-2">
+                        <button
+                          className="text-sm text-white px-3 py-1 rounded-md bg-[oklch(76.9%_0.188_70.08)] cursor-pointer"
+                          onClick={() => handleEdit(foodItem)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="text-sm text-white px-3 py-1 rounded-md bg-[oklch(63.7%_0.237_25.331)] cursor-pointer"
+                          onClick={() => handleDelete(foodItem.featuredId)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -281,6 +306,16 @@ function ManageProducts() {
                 required
                 name="featuredPrice"
                 value={editingItem.featuredPrice}
+                onChange={handleChange}
+              />
+
+              <input
+                type="text"
+                placeholder="Quantity"
+                className="border p-2"
+                required
+                name="stock"
+                value={editingItem.stock}
                 onChange={handleChange}
               />
 

@@ -1,9 +1,29 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../features/cart/cartSlice";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function FeaturedCard(props) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.value);
+
+  const handleAddToCart = () => {
+    if (!user) {
+      toast.error("Please login first.");
+      navigate("/login");
+      return;
+    }
+
+    if (user.role !== "User") {
+      toast.error("Only Users can add items to cart.");
+      return;
+    }
+
+    dispatch(addToCart(props.featuredFood));
+    toast.success("Item added to cart.");
+  };
 
   return (
     <div className="p-2 flex flex-col dark:text-[oklch(74.6%_0.16_232.661)]">
@@ -19,8 +39,13 @@ function FeaturedCard(props) {
         <p>{props.featuredFood.featuredRestrnt}</p>
         <p>Price: ₹{props.featuredFood.featuredPrice}</p>
         <button
-          className="rounded-lg bg-[oklch(79.5%_0.184_86.047)] dark:text-black w-32 p-2 mt-2 cursor-pointer"
-          onClick={() => dispatch(addToCart(props.featuredFood))}
+          disabled={user?.role !== "User"}
+          className={`rounded-lg p-2 mt-2 w-32 ${
+            user?.role !== "User"
+              ? "cursor-not-allowed bg-yellow-200"
+              : "bg-[oklch(79.5%_0.184_86.047)] dark:text-black cursor-pointer"
+          }`}
+          onClick={handleAddToCart}
         >
           Add to Cart
         </button>
