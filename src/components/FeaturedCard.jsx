@@ -11,7 +11,7 @@ function FeaturedCard(props) {
 
   const handleAddToCart = () => {
     if (!user) {
-      toast.error("Please login first.");
+      toast.error("Please login to add items to cart.");
       navigate("/login");
       return;
     }
@@ -39,12 +39,7 @@ function FeaturedCard(props) {
         <p>{props.featuredFood.featuredRestrnt}</p>
         <p>Price: ₹{props.featuredFood.featuredPrice}</p>
         <button
-          disabled={user?.role !== "User"}
-          className={`rounded-lg p-2 mt-2 w-32 ${
-            user?.role !== "User"
-              ? "cursor-not-allowed bg-yellow-200"
-              : "bg-[oklch(79.5%_0.184_86.047)] dark:text-black cursor-pointer"
-          }`}
+          className="rounded-lg p-3 mt-2 w-32 bg-[oklch(79.5%_0.184_86.047)] dark:text-black cursor-pointer"
           onClick={handleAddToCart}
         >
           Add to Cart
