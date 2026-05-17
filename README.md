@@ -1,8 +1,8 @@
 ##Credentials for login
 
 #Admin ->
-Username : admin@gmail.com
+Username : admin@gmail.com,
 Password : admin123
 
-#User
+#User ->
 Users can login after Sign-up.
