@@ -186,7 +186,7 @@ function SigUp() {
               Sign Up
             </button>
             <div className="text-sm text-center p-2 text-[oklch(45%_0.085_224.283)] dark:text-[oklch(74.6%_0.16_232.661)]">
-              Already have an account?
+              Already have an account ?
               <Link to="/login"> Login</Link>
             </div>
           </div>

@@ -11,7 +11,7 @@ import frenchCuisine from "../assets/images/frenchCuisine.jpeg";
 
 function Home() {
   const foodItems = JSON.parse(localStorage.getItem("foodItems"));
-
+  
   const cuisines = [
     { cuisineId: 1, cuisineImg: indianCuisine, cuisineName: "Indian Cuisine" },
     { cuisineId: 2, cuisineImg: koreanCuisine, cuisineName: "Korean Cuisine" },

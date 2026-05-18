@@ -116,7 +116,7 @@ function Login() {
             </button>
 
             <div className="text-sm text-center p-2 text-[oklch(45%_0.085_224.283)] dark:text-[oklch(74.6%_0.16_232.661)]">
-              New to WorldPlatter?
+              New to WorldPlatter ?
               <Link to="/signup"> SignUp</Link>
             </div>
           </div>
