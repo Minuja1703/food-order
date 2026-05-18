@@ -51,7 +51,7 @@ export const featured = [
     featuredId: 5,
     featuredImg: tiramisu,
     featuredName: "Tiramisu",
-    featuredRestrnt: "Lavonne Café",
+    featuredRestrnt: "Lavonne Cafe",
     featuredPrice: 240,
     category: "Italian",
     isFeatured: true,
