@@ -10,7 +10,7 @@ function Contact() {
       </p>
 
       <h1>📞 Customer Support</h1>
-      <p>Phone: +91 98765 43210 Available daily from 9:00 AM - 10:00 PM.</p>
+      <p>Phone: +91 445296311 Available daily from 9:00 AM - 10:00 PM.</p>
 
       <h1>📧 Email Us</h1>
       <p>
@@ -20,8 +20,7 @@ function Contact() {
 
       <h1>🏢 Office Address</h1>
       <p>
-        WorldPlatter Technologies 2nd Floor, Crescent Tower MG Road, Kollam,
-        Kerala - 691001.
+        WorldPlatter 8th Floor, Marine Heights Business Tower Linking Road, Bandra West Mumbai, Maharashtra - 400050 India
       </p>
 
       <h1>📱Follow Us</h1>
