@@ -76,7 +76,7 @@ function Navbar() {
 
           {user?.role === "User" ? (
             <button
-              className="border rounded-lg p-2 bg-red-600 text-white"
+              className="border rounded-lg p-2 bg-red-600 text-white cursor-pointer"
               onClick={() => dispatch(logout())}
             >
               Logout
